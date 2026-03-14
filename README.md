@@ -50,11 +50,7 @@ The game sends an HTTP request to an online JSON endpoint.
 
 The JSON contains:
 
-- Box types
-- Color for each type
-- Health value
-- Score value
-- Transform data for each box
+- Box types, Color for each type, Health value, Score value, Transform data for each box
 
 The response is parsed using Unreal's built-in JSON system.
 
@@ -66,17 +62,11 @@ The JSON data is mapped into C++ structs.
 
 Example structs used in the project:
 
-- `FBoxTypeData`
-- `FBoxTransformData`
-- `FBoxObjectData`
+- `FBoxTypeData`, `FBoxTransformData`, `FBoxObjectData`
 
 These store:
 
-- box type name
-- color
-- health
-- score
-- transform data (location, rotation, scale)
+- box type name, color, health, score, transform data (location, rotation, scale)
 
 ---
 
@@ -99,8 +89,7 @@ A material with a **color parameter** is used.
 
 When the box spawns:
 
-- A **dynamic material instance** is created
-- The color from JSON is applied in C++
+- A **dynamic material instance** is created and the color from JSON is applied in C++.
 
 This allows every box to have a different color.
 
@@ -112,8 +101,7 @@ The FPS player can shoot boxes.
 
 When a bullet hits a box:
 
-- Box health decreases by **1**
-- When health reaches **0**, the box is destroyed
+- Box health decreases by **1**, When health reaches **0**, the box is destroyed
 - The player receives the **score value** defined in JSON
 
 ---
@@ -122,12 +110,11 @@ When a bullet hits a box:
 
 The player score is displayed using a UI widget.
 
-The UI base class is created in **C++**, and the layout can be extended using Blueprint.
+The UI base class is created in **C++**, and the layout is extended using Blueprint.
 
 Whenever a box is destroyed:
 
-- The score is updated
-- The UI refreshes to show the new value
+- The score is updated, and the UI refreshes to show the new value
 
 ---
 
@@ -142,7 +129,7 @@ Whenever a box is destroyed:
 5. Shoot the boxes using the FPS weapon
 6. Observe:
    - Health decreases when hit
-   - Box disappears when health reaches zero
+   - Box disappears(destroy) when health reaches zero
    - Player score increases
    - UI updates with the new score
 
@@ -154,9 +141,6 @@ Some parts required extra attention during development:
 
 ### JSON Parsing
 Handling nested JSON structures and mapping them correctly to C++ structs required careful parsing.
-
-### Runtime Material Control
-Applying color dynamically required creating **material instance dynamics** and setting parameters in C++.
 
 ### Error Handling
 HTTP requests can fail, and JSON parsing can break if data is incorrect.  
