@@ -161,9 +161,3 @@ The project uses only:
 - Basic engine assets
 
 No external plugins or libraries were used.
-
----
-
-# Author
-
-Kaushik Chavda
